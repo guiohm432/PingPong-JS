@@ -11,3 +11,13 @@ hit.src = "sounds/hit.mp3";
 wall.src = "sounds/wall.mp3";
 comScore.src = "sounds/comScore.mp3";
 userScore.src = "sounds/userScore.mp3";
+
+// User Paddle
+const user = {
+    x : 0,
+    y : (canvas.height - 100)/2, // -100 : the height of paddle
+    width : 10,
+    height : 100,
+    score : 0,
+    color : "WHITE"
+}
