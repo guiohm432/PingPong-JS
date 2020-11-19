@@ -21,3 +21,13 @@ const user = {
     score : 0,
     color : "WHITE"
 }
+
+// COM Paddle
+const com = {
+    x : canvas.width - 10,
+    y : (canvas.height - 100)/2,
+    width : 10,
+    height : 100,
+    score : 0,
+    color : "WHITE"
+}
