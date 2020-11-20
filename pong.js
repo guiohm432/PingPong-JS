@@ -31,3 +31,12 @@ const com = {
     score : 0,
     color : "WHITE"
 }
+
+// NET
+const net = {
+    x : (canvas.width - 2)/2,
+    y : 0,
+    height : 10,
+    width : 2,
+    color : "WHITE"
+}
