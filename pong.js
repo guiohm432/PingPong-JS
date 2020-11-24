@@ -53,3 +53,6 @@ function drawArc(x, y, r, color){
     ctx.closePath();
     ctx.fill();
 }
+
+// listening to the mouse
+canvas.addEventListener("mousemove", getMousePos);
