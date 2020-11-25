@@ -56,3 +56,9 @@ function drawArc(x, y, r, color){
 
 // listening to the mouse
 canvas.addEventListener("mousemove", getMousePos);
+
+function getMousePos(evt){
+    let rect = canvas.getBoundingClientRect();
+    
+    user.y = evt.clientY - rect.top - user.height/2;
+}
