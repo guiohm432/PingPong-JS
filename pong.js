@@ -62,3 +62,11 @@ function getMousePos(evt){
     
     user.y = evt.clientY - rect.top - user.height/2;
 }
+
+// when COM or USER scores, we reset the ball
+function resetBall(){
+    ball.x = canvas.width/2;
+    ball.y = canvas.height/2;
+    ball.velocityX = -ball.velocityX;
+    ball.speed = 7;
+}
