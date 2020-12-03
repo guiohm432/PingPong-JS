@@ -41,6 +41,16 @@ const net = {
     color : "WHITE"
 }
 
+const ball = {
+    x : canvas.width/2,
+    y : canvas.height/2,
+    radius : 10,
+    velocityX : 5,
+    velocityY : 5,
+    speed : 7,
+    color : "WHITE"
+}
+
 function drawRect(x, y, w, h, color){
     ctx.fillStyle = color;
     ctx.fillRect(x, y, w, h);
@@ -82,3 +92,4 @@ function drawText(text,x,y){
     ctx.font = "75px fantasy";
     ctx.fillText(text, x, y);
 }
+
