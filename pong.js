@@ -76,3 +76,9 @@ function drawNet(){
         drawRect(net.x, net.y + i, net.width, net.height, net.color);
     }
 }
+
+function drawText(text,x,y){
+    ctx.fillStyle = "#FFF";
+    ctx.font = "75px fantasy";
+    ctx.fillText(text, x, y);
+}
