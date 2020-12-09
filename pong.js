@@ -107,6 +107,62 @@ function collision(b,p){
     return p.left < b.right && p.top < b.bottom && p.right > b.left && p.bottom > b.top;
 }
 
+function update(){
+    
+    // change the score of players, if the ball goes to the left "ball.x<0" computer win, else if "ball.x > canvas.width" the user win
+    if( ball.x - ball.radius < 0 ){
+        com.score++;
+        comScore.play();
+        resetBall();
+    }else if( ball.x + ball.radius > canvas.width){
+        user.score++;
+        userScore.play();
+        resetBall();
+    }
+    
+    // the ball has a velocity
+    ball.x += ball.velocityX;
+    ball.y += ball.velocityY;
+    
+    // computer plays for itself, and we must be able to beat it
+    // simple AI
+    com.y += ((ball.y - (com.y + com.height/2)))*0.1;
+    
+    // when the ball collides with bottom and top walls we inverse the y velocity.
+    if(ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height){
+        ball.velocityY = -ball.velocityY;
+        wall.play();
+    }
+    
+    // we check if the paddle hit the user or the com paddle
+    let player = (ball.x + ball.radius < canvas.width/2) ? user : com;
+    
+    // if the ball hits a paddle
+    if(collision(ball,player)){
+        // play sound
+        hit.play();
+        // we check where the ball hits the paddle
+        let collidePoint = (ball.y - (player.y + player.height/2));
+        // normalize the value of collidePoint, we need to get numbers between -1 and 1.
+        // -player.height/2 < collide Point < player.height/2
+        collidePoint = collidePoint / (player.height/2);
+        
+        // when the ball hits the top of a paddle we want the ball, to take a -45degees angle
+        // when the ball hits the center of the paddle we want the ball to take a 0degrees angle
+        // when the ball hits the bottom of the paddle we want the ball to take a 45degrees
+        // Math.PI/4 = 45degrees
+        let angleRad = (Math.PI/4) * collidePoint;
+        
+        // change the X and Y velocity direction
+        let direction = (ball.x + ball.radius < canvas.width/2) ? 1 : -1;
+        ball.velocityX = direction * ball.speed * Math.cos(angleRad);
+        ball.velocityY = ball.speed * Math.sin(angleRad);
+        
+        // speed up the ball everytime a paddle hits it.
+        ball.speed += 0.1;
+    }
+}
+
 function render(){
     
     // clear the canvas
@@ -129,4 +185,11 @@ function render(){
     // draw the ball
     drawArc(ball.x, ball.y, ball.radius, ball.color);
 }
+
+function game(){
+    update();
+    render();
+}
+
+
 
